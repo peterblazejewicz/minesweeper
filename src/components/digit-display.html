@@ -151,6 +151,11 @@
                 };
             }
 
+            ready() {
+                super.ready();
+                this.digitChanged();
+            }
+
             /**
              * the `valid` property is computed using this method
              * @param {Number} {digit} value to test

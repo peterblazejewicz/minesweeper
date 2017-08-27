@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="digit-display.html">
+
+<dom-module id="game-counter">
+    <template>
+        <style>
+             :host {
+                display: flex;
+            }
+        </style>
+        <digit-display id="hundreds"></digit-display>
+        <digit-display id="tens"></digit-display>
+        <digit-display id="ones"></digit-display>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class GameCounter extends Polymer.Element {
+            static get is() {
+                return 'game-counter';
+            }
+            static get properties() {
+                return {
+                    counter: {
+                        type: Number,
+                        value: 0,
+                        observer: '_counterChanged'
+                    },
+                    valid: {
+                        type: Boolean,
+                        computed: '_isValid(counter)',
+                        value: true,
+                        reflectToAttribute: true
+                    }
+                };
+            }
+
+            /**
+             * when counter changes update display state
+             */
+            _counterChanged() {
+                if (this.valid) {
+                    // #hundreds
+                    this.$.hundreds.digit = this.counter / 100 >> 0;
+                    // #tens
+                    const tensReminder = this.counter % 100;
+                    this.$.tens.digit = tensReminder / 10 >> 0;
+                    // #ones
+                    const onesReminder = tensReminder % 10;
+                    this.$.ones.digit = onesReminder >> 0;
+                } else {
+                    this.$.hundreds.digit =
+                        this.$.tens.digit =
+                        this.$.ones.digit = 0;
+                }
+            }
+
+            /**
+             * checks if counter is in valid range (0..999)
+             */
+            _isValid(counter) {
+                return Number.isInteger(counter) &&
+                    (counter >= 0 && counter <= 999);
+            }
+
+        }
+
+        window.customElements.define(GameCounter.is, GameCounter);
+    </script>
+</dom-module>
