@@ -4,9 +4,127 @@
     <template>
         <style>
              :host {
+                --digit-display-background: hsl(0, 0%, 0%);
+                --digit-display-color: red;
+                --digit-display-color-rgba: rgba(0, 255, 0, .2);
+                --digit-display-width: 100px;
+                --digit-display-height: calc(2 * var(--digit-display-width));
+                --digit-display-bar-height: 20px;
+                --digit-display-bar-cap-width: calc(var(--digit-display-bar-height) / 2);
                 display: block;
+                position: relative;
+                overflow: hidden;
+                box-sizing: border-box;
+                flex: 0 0 var(--digit-display-width);
+                width: var(--digit-display-width, 100px);
+                height: calc(2 * var(--digit-display-width, 100px));
+                margin: var(--digit-display-margin, 0);
+                background: var(--digit-display-background);
+                border: 1px solid var(--digit-display-background);
+            }
+
+            .hbar,
+            .vbar {
+                background: var(--digit-display-color);
+                position: absolute;
+                box-sizing: border-box;
+            }
+
+            .hbar {
+                height: var(--digit-display-bar-height);
+            }
+
+            .vbar {
+                width: var(--digit-display-bar-height);
+            }
+
+            .hbar {
+                left: calc(1px + var(--digit-display-bar-height));
+                right: calc(1px + var(--digit-display-bar-height));
+            }
+
+            .hbar--top {
+                top: 0;
+            }
+
+            .hbar--middle {
+                top: calc(50%);
+                transform: translateY(-50%);
+            }
+
+            .hbar--bottom {
+                bottom: 0;
+            }
+
+            .vbar--top {
+                top: calc(1px + var(--digit-display-bar-height));
+                bottom: calc(var(--digit-display-height)/2 + var(--digit-display-bar-height)/2);
+            }
+
+            .vbar--left {
+                left: 0;
+            }
+
+            .vbar--right {
+                right: 0;
+            }
+
+            .vbar--left {
+                left: 0;
+            }
+
+            .vbar--bottom {
+                top: calc(var(--digit-display-height)/2 + var(--digit-display-bar-height)/2);
+                bottom: calc(1px + var(--digit-display-bar-height));
+            }
+
+            .hbar:before,
+            .hbar:after,
+            .vbar:before,
+            .vbar:after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 0;
+            }
+
+            .hbar:before {
+                left: calc(-1 * var(--digit-display-bar-cap-width));
+                border-top: var(--digit-display-bar-cap-width) solid transparent;
+                border-bottom: var(--digit-display-bar-cap-width) solid transparent;
+                border-right: var(--digit-display-bar-cap-width) solid var(--digit-display-color);
+            }
+
+            .hbar:after {
+                right: calc(-1 * var(--digit-display-bar-cap-width));
+                border-top: var(--digit-display-bar-cap-width) solid transparent;
+                border-bottom: var(--digit-display-bar-cap-width) solid transparent;
+                border-left: var(--digit-display-bar-cap-width) solid var(--digit-display-color);
+            }
+
+            .vbar:before {
+                top: calc(-1 * var(--digit-display-bar-cap-width));
+                border-left: var(--digit-display-bar-cap-width) solid transparent;
+                border-right: var(--digit-display-bar-cap-width) solid transparent;
+                border-bottom: var(--digit-display-bar-cap-width) solid var(--digit-display-color);
+            }
+
+            .vbar:after {
+                bottom: calc(-1 * var(--digit-display-bar-cap-width));
+                border-left: var(--digit-display-bar-cap-width) solid transparent;
+                border-right: var(--digit-display-bar-cap-width) solid transparent;
+                border-top: var(--digit-display-bar-cap-width) solid var(--digit-display-color);
             }
         </style>
+
+        <div class="hbar hbar--top" id="hbar__top"></div>
+        <div class="vbar vbar--top vbar--left" id="vbar__top__left"></div>
+        <div class="vbar vbar--top vbar--right" id="vbar__top__right"></div>
+        <div class="hbar hbar--middle" id="hbar__middle"></div>
+        <div class="vbar vbar--bottom vbar--left" id="vbar__bottom__left"></div>
+        <div class="vbar vbar--bottom vbar--right" id="vbar__bottom__right"></div>
+        <div class="hbar hbar--bottom" id="hbar__bottom"></div>
+
     </template>
 
     <script>
@@ -21,7 +139,8 @@
             static get properties() {
                 return {
                     digit: {
-                        type: Number
+                        type: Number,
+                        observer: 'digitChanged'
                     },
                     valid: {
                         type: Boolean,
@@ -33,18 +152,103 @@
             }
 
             /**
-            * the `valid` property is computed using this method
-            * @param {Number} {digit} value to test
-            * @returns {Boolean} true, if digit is an integer in supported
-            * range {0..9}
-            */
+             * the `valid` property is computed using this method
+             * @param {Number} {digit} value to test
+             * @returns {Boolean} true, if digit is an integer in supported
+             * range {0..9}
+             */
             computeIsValid(digit) {
                 // undefined is default and allowed
-                if(digit === undefined) {
+                if (digit === undefined) {
                     return true;
                 }
                 // non IE
-                return Number.isInteger(digit) && (digit > 0 && digit < 10);
+                return Number.isInteger(digit) && (digit >= 0 && digit < 10);
+            }
+
+            digitChanged() {
+                this.$.hbar__top.hidden =
+                this.$.vbar__top__left.hidden =
+                this.$.vbar__top__right.hidden =
+                this.$.hbar__middle.hidden =
+                this.$.vbar__bottom__left.hidden =
+                this.$.vbar__bottom__right.hidden =
+                this.$.hbar__bottom.hidden = true;
+                const state = (this.valid) ? this.digit : undefined;
+                switch(state) {
+                    case 0:
+                        this.$.hbar__top.hidden =
+                        this.$.vbar__top__left.hidden =
+                        this.$.vbar__top__right.hidden =
+                        this.$.vbar__bottom__left.hidden =
+                        this.$.vbar__bottom__right.hidden =
+                        this.$.hbar__bottom.hidden = false;
+                        break;
+                    case 1:
+                        this.$.vbar__top__right.hidden =
+                        this.$.vbar__bottom__right.hidden = false;
+                        break;
+                    case 2:
+                        this.$.hbar__top.hidden =
+                        this.$.vbar__top__right.hidden =
+                        this.$.hbar__middle.hidden =
+                        this.$.vbar__bottom__left.hidden =
+                        this.$.hbar__bottom.hidden = false;
+                        break;
+                    case 3:
+                        this.$.hbar__top.hidden =
+                        this.$.vbar__top__right.hidden =
+                        this.$.hbar__middle.hidden =
+                        this.$.vbar__bottom__right.hidden =
+                        this.$.hbar__bottom.hidden = false;
+                        break;
+                    case 4:
+                        this.$.vbar__top__left.hidden =
+                        this.$.vbar__top__right.hidden =
+                        this.$.hbar__middle.hidden =
+                        this.$.vbar__bottom__right.hidden = false;
+                        break;
+                    case 5:
+                        this.$.hbar__top.hidden =
+                        this.$.vbar__top__left.hidden =
+                        this.$.hbar__middle.hidden =
+                        this.$.vbar__bottom__right.hidden =
+                        this.$.hbar__bottom.hidden = false;
+                        break;
+                    case 6:
+                        this.$.hbar__top.hidden =
+                        this.$.vbar__top__left.hidden =
+                        this.$.hbar__middle.hidden =
+                        this.$.vbar__bottom__left.hidden =
+                        this.$.vbar__bottom__right.hidden =
+                        this.$.hbar__bottom.hidden = false;
+                        break;
+                    case 7:
+                        this.$.hbar__top.hidden =
+                        this.$.vbar__top__right.hidden =
+                        this.$.vbar__bottom__right.hidden = false;
+                        break;
+                    case 8:
+                        this.$.hbar__top.hidden =
+                        this.$.vbar__top__left.hidden =
+                        this.$.vbar__top__right.hidden =
+                        this.$.hbar__middle.hidden =
+                        this.$.vbar__bottom__left.hidden =
+                        this.$.vbar__bottom__right.hidden =
+                        this.$.hbar__bottom.hidden = false;
+                        break;
+                    case 9:
+                        this.$.hbar__top.hidden =
+                        this.$.vbar__top__left.hidden =
+                        this.$.vbar__top__right.hidden =
+                        this.$.hbar__middle.hidden =
+                        this.$.vbar__bottom__right.hidden =
+                        this.$.hbar__bottom.hidden = false;
+                        break;
+                    default:
+                        // nothing
+                        break;
+                }
             }
         }
 
