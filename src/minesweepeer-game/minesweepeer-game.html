@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="minesweepeer-game">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MinesweepeerGame extends Polymer.Element {
+      static get is() { return 'minesweepeer-game'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'minesweepeer-game'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MinesweepeerGame.is, MinesweepeerGame);
+  </script>
+</dom-module>
