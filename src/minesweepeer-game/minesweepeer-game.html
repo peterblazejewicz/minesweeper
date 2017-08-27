@@ -7,7 +7,7 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <h2>Hello [[rows]] [[cols]]!</h2>
   </template>
 
   <script>
@@ -19,9 +19,13 @@
       static get is() { return 'minesweepeer-game'; }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'minesweepeer-game'
+          rows: {
+            type: Number,
+            value: 0
+          },
+          cols: {
+            type: Number,
+            value: 0
           }
         };
       }
