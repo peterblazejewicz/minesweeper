@@ -1,0 +1,53 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="digit-display">
+    <template>
+        <style>
+             :host {
+                display: block;
+            }
+        </style>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class DigitDisplay extends Polymer.Element {
+            static get is() {
+                return 'digit-display';
+            }
+            static get properties() {
+                return {
+                    digit: {
+                        type: Number
+                    },
+                    valid: {
+                        type: Boolean,
+                        reflectToAttribute: true,
+                        computed: 'computeIsValid(digit)',
+                        value: true
+                    }
+                };
+            }
+
+            /**
+            * the `valid` property is computed using this method
+            * @param {Number} {digit} value to test
+            * @returns {Boolean} true, if digit is an integer in supported
+            * range {0..9}
+            */
+            computeIsValid(digit) {
+                // undefined is default and allowed
+                if(digit === undefined) {
+                    return true;
+                }
+                // non IE
+                return Number.isInteger(digit) && (digit > 0 && digit < 10);
+            }
+        }
+
+        window.customElements.define(DigitDisplay.is, DigitDisplay);
+    </script>
+</dom-module>

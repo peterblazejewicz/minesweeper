@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>minesweepeer-game test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../src/components/digit-display.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <digit-display></digit-display>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="ChangedPropertyTestFixture">
+      <template>
+        <digit-display digit="9"></digit-display>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('minesweepeer-game', function() {
+
+        test('instantiating the element with default properties works', function() {
+          var element = fixture('BasicTestFixture');
+          assert.equal(element.digit, undefined);
+        });
+
+        test('setting a property on the element works', function() {
+          // Create a test fixture
+          var element = fixture('ChangedPropertyTestFixture');
+          assert.equal(element.digit, 9);
+        });
+
+        test('setting a property on element sets valid state', () => {
+            var element = fixture('BasicTestFixture');
+            assert.equal(true, element.valid);
+            element.digit = 9;
+            assert.equal(true, element.valid);
+            element.digit = 10;
+            assert.equal(false, element.valid);
+            element.digit = undefined;
+            assert.equal(true, element.valid);
+        });
+
+      });
+    </script>
+
+
+  </body>
+</html>
