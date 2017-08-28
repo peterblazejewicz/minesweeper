@@ -20,7 +20,7 @@ Displays a single digit. Can be used to create counters, etc.
 
 The counters shows current state for the game, e.g.:
 
-![image](https://user-images.githubusercontent.com/14539/29753883-bdcffdf8-8b7a-11e7-904f-606a0bc3a394.png)
+![image](https://user-images.githubusercontent.com/14539/29793969-52582970-8c46-11e7-8a24-f3025ff3ceb0.png)
 
 #### GameStatus
 

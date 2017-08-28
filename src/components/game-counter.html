@@ -6,7 +6,11 @@
     <template>
         <style>
              :host {
-                display: flex;
+                --grid-cell-background: hsl(0,0%,75%);
+                --grid-cell-border-color: hsl(0,0%,90%);
+                display: inline-flex;
+                background: var(--grid-cell-background);
+                border: 4px inset var(--grid-cell-border-color);
             }
         </style>
         <digit-display id="hundreds"></digit-display>
