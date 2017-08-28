@@ -24,7 +24,9 @@ The counters shows current state for the game, e.g.:
 
 #### GameStatus
 
-TBD
+A single cell with an image that represents game status, for example:
+
+![image](https://user-images.githubusercontent.com/14539/29793296-a1a11f4e-8c43-11e7-9353-e2fa9e1d90c7.png)
 
 #### GameGrid
 

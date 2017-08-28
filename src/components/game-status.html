@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="game-status">
+    <template>
+        <style>
+            :host {
+                --grid-cell-background: hsl(0,0%,75%);
+                --grid-cell-border-color: hsl(0,0%,90%);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                box-sizing: border-box;
+                width: var(--game-status-size, 100px);
+                height: var(--game-status-size, 100px);
+                background: var(--grid-cell-background);
+                border: 4px outset var(--grid-cell-border-color);
+                font-size: calc(var(--game-status-size, 100px) * .75);
+                line-height: 1;
+            }
+            #status {
+                position: relative;
+                bottom: -8%;
+            }
+
+        </style>
+        <span id="status">[[state]]</span>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class GameStatus extends Polymer.Element {
+            /**
+            * support states
+            */
+            static get statuses() {
+                return {
+                    'ongoing': '😃',
+                    'won': '😎',
+                    'lost': '😠'
+                }
+            }
+            static get is() {
+                return 'game-status';
+            }
+            static get properties() {
+                return {
+                    status: {
+                        type: String,
+                        observer: 'statusChanged'
+                    },
+                    valid: {
+                        type: Boolean,
+                        computed: '_isValid(status)',
+                        value: true,
+                        reflectToAttribute: true
+                    },
+                    state: {
+                        type: String,
+                        readOnly: true
+                    },
+                    title: {
+                        type: String
+                    }
+                };
+            }
+
+            /**
+             * when status changes update display state
+             */
+            statusChanged() {
+                if (this.valid)
+                {
+                    this._setState(GameStatus.statuses[this.status]);
+                    this.title = `Status: ${this.status}`;
+                } else {
+                    this._setState('');
+                    this.title = ``;
+                }
+            }
+
+            /**
+             * checks if status is in valid range (0..999)
+             */
+            _isValid(status) {
+                return Object.keys(GameStatus.statuses).includes(this.status);
+            }
+
+        }
+
+        window.customElements.define(GameStatus.is, GameStatus);
+
+    </script>
+</dom-module>
