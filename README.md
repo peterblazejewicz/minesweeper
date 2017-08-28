@@ -8,7 +8,9 @@ Recreate a game using webcomponents (Polymer 2.*). Some parts from a stencil com
 
 #### GameHeader
 
-TBD
+Contains two game counters and one game status component.
+
+![image](https://user-images.githubusercontent.com/14539/29794639-0f7af332-8c49-11e7-9302-a159e9c99981.png)
 
 #### DigitDisplay
 

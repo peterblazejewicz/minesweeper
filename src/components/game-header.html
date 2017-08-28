@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./game-counter.html">
+<link rel="import" href="./game-status.html">
+
+<dom-module id="game-header">
+    <template>
+        <style>
+            :host {
+                --grid-cell-background: hsl(0,0%,75%);
+                --grid-cell-border-color: hsl(0,0%,90%);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                box-sizing: border-box;
+                background: var(--grid-cell-background);
+                border: 4px outset var(--grid-cell-border-color);
+                padding: 1rem;
+            }
+        </style>
+        <game-counter id="size" counter="9"></game-counter>
+        <game-status id="status" status="ongoing"></game-status>
+        <game-counter id="timer" counter="0"></game-counter>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class GameHeader extends Polymer.Element {
+            static get is() {
+                return 'game-header';
+            }
+
+        }
+
+        window.customElements.define(GameHeader.is, GameHeader);
+
+    </script>
+</dom-module>
