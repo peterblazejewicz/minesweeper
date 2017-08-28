@@ -115,6 +115,10 @@
                 border-right: var(--digit-display-bar-cap-width) solid transparent;
                 border-top: var(--digit-display-bar-cap-width) solid var(--digit-display-color);
             }
+
+            .off {
+                opacity: .3;
+            }
         </style>
 
         <div class="hbar hbar--top" id="hbar__top"></div>
@@ -172,83 +176,83 @@
             }
 
             digitChanged() {
-                this.$.hbar__top.hidden =
-                this.$.vbar__top__left.hidden =
-                this.$.vbar__top__right.hidden =
-                this.$.hbar__middle.hidden =
-                this.$.vbar__bottom__left.hidden =
-                this.$.vbar__bottom__right.hidden =
-                this.$.hbar__bottom.hidden = true;
+                [this.$.hbar__top,
+                this.$.vbar__top__left,
+                this.$.vbar__top__right,
+                this.$.hbar__middle,
+                this.$.vbar__bottom__left,
+                this.$.vbar__bottom__right,
+                this.$.hbar__bottom].forEach(el => el.classList.toggle('off', true));
                 const state = (this.valid) ? this.digit : undefined;
                 switch(state) {
                     case 0:
-                        this.$.hbar__top.hidden =
-                        this.$.vbar__top__left.hidden =
-                        this.$.vbar__top__right.hidden =
-                        this.$.vbar__bottom__left.hidden =
-                        this.$.vbar__bottom__right.hidden =
-                        this.$.hbar__bottom.hidden = false;
+                        [this.$.hbar__top,
+                        this.$.vbar__top__left,
+                        this.$.vbar__top__right,
+                        this.$.vbar__bottom__left,
+                        this.$.vbar__bottom__right,
+                        this.$.hbar__bottom.hidden].forEach(el => el.classList.toggle('off', false));
                         break;
                     case 1:
-                        this.$.vbar__top__right.hidden =
-                        this.$.vbar__bottom__right.hidden = false;
+                        [this.$.vbar__top__right,
+                        this.$.vbar__bottom__right].forEach(el => el.classList.toggle('off', false));
                         break;
                     case 2:
-                        this.$.hbar__top.hidden =
-                        this.$.vbar__top__right.hidden =
-                        this.$.hbar__middle.hidden =
-                        this.$.vbar__bottom__left.hidden =
-                        this.$.hbar__bottom.hidden = false;
+                        [this.$.hbar__top,
+                        this.$.vbar__top__right,
+                        this.$.hbar__middle,
+                        this.$.vbar__bottom__left,
+                        this.$.hbar__bottom].forEach(el => el.classList.toggle('off', false));
                         break;
                     case 3:
-                        this.$.hbar__top.hidden =
-                        this.$.vbar__top__right.hidden =
-                        this.$.hbar__middle.hidden =
-                        this.$.vbar__bottom__right.hidden =
-                        this.$.hbar__bottom.hidden = false;
+                        [this.$.hbar__top,
+                        this.$.vbar__top__right,
+                        this.$.hbar__middle,
+                        this.$.vbar__bottom__right,
+                        this.$.hbar__bottom].forEach(el => el.classList.toggle('off', false));
                         break;
                     case 4:
-                        this.$.vbar__top__left.hidden =
-                        this.$.vbar__top__right.hidden =
-                        this.$.hbar__middle.hidden =
-                        this.$.vbar__bottom__right.hidden = false;
+                        [this.$.vbar__top__left,
+                        this.$.vbar__top__right,
+                        this.$.hbar__middle,
+                        this.$.vbar__bottom__right].forEach(el => el.classList.toggle('off', false));
                         break;
                     case 5:
-                        this.$.hbar__top.hidden =
-                        this.$.vbar__top__left.hidden =
-                        this.$.hbar__middle.hidden =
-                        this.$.vbar__bottom__right.hidden =
-                        this.$.hbar__bottom.hidden = false;
+                        [this.$.hbar__top,
+                        this.$.vbar__top__left,
+                        this.$.hbar__middle,
+                        this.$.vbar__bottom__right,
+                        this.$.hbar__bottom].forEach(el => el.classList.toggle('off', false));
                         break;
                     case 6:
-                        this.$.hbar__top.hidden =
-                        this.$.vbar__top__left.hidden =
-                        this.$.hbar__middle.hidden =
-                        this.$.vbar__bottom__left.hidden =
-                        this.$.vbar__bottom__right.hidden =
-                        this.$.hbar__bottom.hidden = false;
+                        [this.$.hbar__top,
+                        this.$.vbar__top__left,
+                        this.$.hbar__middle,
+                        this.$.vbar__bottom__left,
+                        this.$.vbar__bottom__right,
+                        this.$.hbar__bottom].forEach(el => el.classList.toggle('off', false));
                         break;
                     case 7:
-                        this.$.hbar__top.hidden =
-                        this.$.vbar__top__right.hidden =
-                        this.$.vbar__bottom__right.hidden = false;
+                        [this.$.hbar__top,
+                        this.$.vbar__top__right,
+                        this.$.vbar__bottom__right].forEach(el => el.classList.toggle('off', false));
                         break;
                     case 8:
-                        this.$.hbar__top.hidden =
-                        this.$.vbar__top__left.hidden =
-                        this.$.vbar__top__right.hidden =
-                        this.$.hbar__middle.hidden =
-                        this.$.vbar__bottom__left.hidden =
-                        this.$.vbar__bottom__right.hidden =
-                        this.$.hbar__bottom.hidden = false;
+                        [this.$.hbar__top,
+                        this.$.vbar__top__left,
+                        this.$.vbar__top__right,
+                        this.$.hbar__middle,
+                        this.$.vbar__bottom__left,
+                        this.$.vbar__bottom__right,
+                        this.$.hbar__bottom].forEach(el => el.classList.toggle('off', false));
                         break;
                     case 9:
-                        this.$.hbar__top.hidden =
-                        this.$.vbar__top__left.hidden =
-                        this.$.vbar__top__right.hidden =
-                        this.$.hbar__middle.hidden =
-                        this.$.vbar__bottom__right.hidden =
-                        this.$.hbar__bottom.hidden = false;
+                        [this.$.hbar__top,
+                        this.$.vbar__top__left,
+                        this.$.vbar__top__right,
+                        this.$.hbar__middle,
+                        this.$.vbar__bottom__right,
+                        this.$.hbar__bottom].forEach(el => el.classList.toggle('off', false));
                         break;
                     default:
                         // nothing
