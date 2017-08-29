@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="game-cell">
+    <template>
+        <style>
+             :host {
+                background: transparent;
+                display: block;
+                font-family: Courier New, Courier, monospace;
+                font-weight: bold;
+                font-size: 2rem;
+                image-rendering: pixelated;
+            }
+
+            /* number states are implemented via attributes */
+            :host([state="1"]) {
+                color: blue;
+            }
+
+            :host([state="2"]) {
+                color: green;
+            }
+
+            :host([state="3"]) {
+                color: red;
+            }
+            :host([state="4"]) {
+                color: darkblue;
+            }
+            :host([state="5"]) {
+                color: darkred;
+            }
+            :host([state="6"]) {
+                color: darkgreen;
+            }
+            :host([state="8"]) {
+                color: black;
+            }
+            :host([state="8"]) {
+                color: gray;
+            }
+
+
+
+        </style>
+        [[value]]
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class GameCell extends Polymer.Element {
+            /**
+             * support states
+             */
+            static get states() {
+                return {
+                    'bomb': '💣',
+                    'flag': '🚩',
+                    '1': '1',
+                    '2': '2',
+                    '3': '3',
+                    '4': '4',
+                    '5': '5',
+                    '6': '6',
+                    '7': '7',
+                    '8': '8'
+                }
+            }
+            static get is() {
+                return 'game-cell';
+            }
+            static get properties() {
+                return {
+                    state: {
+                        type: String,
+                        reflectToAttribute: true,
+                        observer: '_stateChanged'
+                    },
+                    value: {
+                        type: String,
+                        readOnly: true,
+                        value: ''
+                    },
+                    valid: {
+                        type: Boolean,
+                        reflectToAttribute: true,
+                        computed: '_isValid(state)'
+                    },
+                    title: {
+                        type: String
+                    }
+                };
+            }
+
+            /**
+            * whenever state changes
+            */
+            _stateChanged(newState, oldState) {
+                if(newState !== oldState && this.valid === true) {
+                    this._setValue(GameCell.states[newState]);
+                    return;
+                }
+                if((newState !== oldState) && this.valid == false) {
+                    this._setValue('');
+                    return;
+                }
+            }
+
+            /**
+            * validates state
+            */
+            _isValid(state) {
+                return Object.keys(GameCell.states)
+                    .includes(this.state);
+            }
+
+        }
+        window.customElements.define(GameCell.is, GameCell);
+
+    </script>
+</dom-module>
