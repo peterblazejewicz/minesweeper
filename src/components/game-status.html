@@ -6,6 +6,7 @@
         <style>
             :host {
                 background: transparent;
+                --grid-cell-background-active: hsl(0,0%,70%);
                 --grid-cell-background: hsl(0,0%,75%);
                 --grid-cell-border-color: hsl(0,0%,90%);
                 display: inline-flex;
@@ -25,6 +26,8 @@
             }
             #status:active {
                 border-style: groove;
+                outline: none;
+                background: var(--grid-cell-background-active);
             }
 
         </style>
