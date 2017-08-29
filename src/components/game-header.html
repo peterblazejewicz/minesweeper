@@ -20,7 +20,7 @@
             }
         </style>
         <game-counter id="size" counter="9"></game-counter>
-        <game-status id="status" status="ongoing"></game-status>
+        <game-status id="status" status="ongoing" on-status-click="handleStatusClick"></game-status>
         <game-counter id="timer" counter="0"></game-counter>
     </template>
 
@@ -32,6 +32,13 @@
         class GameHeader extends Polymer.Element {
             static get is() {
                 return 'game-header';
+            }
+
+            /**
+            * handle status click
+            */
+            handleStatusClick(event) {
+                // console.log(event.type);
             }
 
         }
