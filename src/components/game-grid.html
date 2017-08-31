@@ -7,11 +7,25 @@
         <style>
              :host {
                 display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-content: flex-start;
                 box-sizing: border-box;
                 background: var(--grid-cell-background);
                 border: 4px outset var(--grid-cell-border-color);
             }
         </style>
+        <game-cell state="bomb"></game-cell>
+        <game-cell state="flag"></game-cell>
+        <game-cell state="1"></game-cell>
+        <game-cell state="2"></game-cell>
+        <game-cell state="3"></game-cell>
+        <game-cell state="4"></game-cell>
+        <game-cell state="5"></game-cell>
+        <game-cell state="6"></game-cell>
+        <game-cell state="7"></game-cell>
+        <game-cell state="8"></game-cell>
         <game-cell state="bomb"></game-cell>
         <game-cell state="flag"></game-cell>
         <game-cell state="1"></game-cell>

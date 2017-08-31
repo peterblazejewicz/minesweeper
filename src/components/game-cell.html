@@ -6,11 +6,20 @@
         <style>
              :host {
                 background: transparent;
-                display: block;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 font-family: Courier New, Courier, monospace;
                 font-weight: bold;
-                font-size: 2rem;
+                font-size: 40px;
                 image-rendering: pixelated;
+                border: 1px solid hsl(0,0%,0%);
+                width: calc(9vw);
+                height: calc(9vw);
+                box-sizing: border-box;
+                flex: 0 0 calc(9vw);
+                margin-right: -1px;
+                margin-bottom: -1px;
             }
 
             /* number states are implemented via attributes */
