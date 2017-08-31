@@ -11,7 +11,8 @@
                 align-items: center;
                 font-family: Courier New, Courier, monospace;
                 font-weight: bold;
-                font-size: 40px;
+                font-size: 6vw;
+                font-weight: bold;
                 image-rendering: pixelated;
                 border: 1px solid hsl(0,0%,0%);
                 width: calc(9vw);
@@ -67,6 +68,7 @@
              */
             static get states() {
                 return {
+                    'empty': '',
                     'bomb': '💣',
                     'flag': '🚩',
                     '1': '1',
