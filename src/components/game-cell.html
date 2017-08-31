@@ -14,15 +14,21 @@
                 font-size: 6vw;
                 font-weight: bold;
                 image-rendering: pixelated;
-                border: 1px solid hsl(0,0%,0%);
+                border: 1px solid gray;
                 width: calc(9vw);
                 height: calc(9vw);
+                margin: 0;
+                padding: 0;
                 box-sizing: border-box;
                 flex: 0 0 calc(9vw);
-                margin-right: -1px;
-                margin-bottom: -1px;
             }
-
+            :host([state="bomb"]),
+            :host([state="flag"]) {
+                border: 4px outset hsl(0,0%,90%);
+            }
+            :host([state="1"]) {
+                color: blue;
+            }
             /* number states are implemented via attributes */
             :host([state="1"]) {
                 color: blue;
