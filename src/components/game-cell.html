@@ -5,6 +5,7 @@
     <template>
         <style>
              :host {
+                position: relative;
                 background: transparent;
                 display: flex;
                 justify-content: center;
@@ -27,6 +28,22 @@
             :host([state="flag"]) {
                 border: 4px outset hsl(0,0%,90%);
             }
+
+            :host([revealed]) {
+                border: 1px solid gray;
+            }
+
+            :host([exploded]) {
+                background: red;
+            }
+
+            :host([miss]):after {
+                content: '❌';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
             :host([state="1"]) {
                 color: blue;
             }
@@ -78,6 +95,7 @@
                     'unknown': '',
                     'empty': '',
                     'bomb': '💣',
+                    'exploded': '💣',
                     'flag': '🚩',
                     '1': '1',
                     '2': '2',
@@ -98,6 +116,11 @@
                         type: String,
                         reflectToAttribute: true,
                         observer: '_stateChanged'
+                    },
+                    revealed: {
+                        type: Boolean,
+                        value: false,
+                        reflectToAttribute: true
                     },
                     value: {
                         type: String,
