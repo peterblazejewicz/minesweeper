@@ -5,28 +5,27 @@
     <template>
         <style>
              :host {
-                position: relative;
-                background: transparent;
                 display: flex;
+                position: relative;
+                flex: 0 0 var(--game-cell-size, 30px);
                 justify-content: center;
                 align-items: center;
                 font-family: Courier New, Courier, monospace;
                 font-weight: bold;
-                font-size: 6vw;
+                font-size: calc(.75 * var(--game-cell-size, 30px));
                 font-weight: bold;
-                image-rendering: pixelated;
-                border: 1px solid gray;
-                width: calc(9vw);
-                height: calc(9vw);
+                background: transparent;
+                border: var(--game-cell-border-size, 1px) solid gray;
+                width: calc(var(--game-cell-size, 30px));
+                height: calc(var(--game-cell-size, 30px));
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
-                flex: 0 0 calc(9vw);
             }
             :host([state="unknown"]),
             :host([state="bomb"]),
             :host([state="flag"]) {
-                border: 4px outset hsl(0,0%,90%);
+                border: var(--game-inner-border-size, 4px) outset var(--grid-cell-border-color, hsl(0,0%,90%));
             }
 
             :host([revealed]) {

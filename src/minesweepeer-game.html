@@ -6,19 +6,23 @@
   <template>
     <style>
       :host {
-        --grid-cell-background: hsl(0,0%,75%);
-        --grid-cell-border-color: hsl(0,0%,90%);
+        --game-rows: 9;
+        --game-cols: 9;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        align-items: center;
         box-sizing: border-box;
-        background: var(--grid-cell-background);
-        border: 4px inset var(--grid-cell-border-color);
-        padding: 1rem;
+        background: var(--grid-cell-background, hsl(0,0%,75%));
+        border: var(--game-inner-border-size, 4px) inset var(--grid-cell-border-color, hsl(0,0%,90%));
+        padding: calc(2 * var(--game-inner-border-size, 4px));
+        box-sizing: border-box;
       }
       game-grid {
-        margin-top: 1rem;
-        width: calc(9 * 9vw);
+        margin-top: calc(2 * var(--game-inner-border-size, 4px));
+        width: calc((var(--game-rows, 9) *  var(--game-cell-size, 30px)) + calc(var(--game-rows, 9) * 1px));
+        height: calc((var(--game-cols, 9) *  var(--game-cell-size, 30px)) + calc(var(--game-cols, 9) * 1px));
+        box-sizing: border-box;
       }
     </style>
     <game-header></game-header>
