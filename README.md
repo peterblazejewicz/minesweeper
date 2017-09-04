@@ -1,8 +1,11 @@
-# minesweeper
+# minesweeper [WIP]
 
 Recreate a game using webcomponents (Polymer 2.*). Some parts from a stencil components
 
 ## Description
+
+![image](https://user-images.githubusercontent.com/14539/30038791-e3faa0f6-91c8-11e7-91ba-4082f7226862.png)
+
 
 ### Elements
 
