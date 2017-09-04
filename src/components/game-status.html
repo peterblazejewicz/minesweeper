@@ -12,12 +12,15 @@
                 box-sizing: border-box;
             }
             #status {
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
                 position: relative;
                 width: var(--game-status-size, 100px);
                 height: var(--game-status-size, 100px);
                 background: var(--grid-cell-background, hsl(0,0%, 75%));
                 border: var(--game-inner-border-size, 4px) outset var(--grid-cell-border-color, hsl(0,0%,90%));
-                font-size: calc(.5 * var(--game-status-size, 100px));
+                font-size: calc(.75 * var(--game-status-size, 100px));
                 line-height: 1;
                 user-select: none;
             }
