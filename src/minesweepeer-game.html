@@ -3,53 +3,62 @@
 <link rel="import" href="./components/game-grid.html">
 
 <dom-module id="minesweepeer-game">
-  <template>
-    <style>
-      :host {
-        --game-rows: 9;
-        --game-cols: 9;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        box-sizing: border-box;
-        background: var(--grid-cell-background, hsl(0,0%,75%));
-        border: var(--game-inner-border-size, 4px) inset var(--grid-cell-border-color, hsl(0,0%,90%));
-        padding: calc(2 * var(--game-inner-border-size, 4px));
-        box-sizing: border-box;
-      }
-      game-grid {
-        margin-top: calc(2 * var(--game-inner-border-size, 4px));
-        width: calc((var(--game-rows, 9) *  var(--game-cell-size, 30px)) + calc(var(--game-rows, 9) * 1px));
-        height: calc((var(--game-cols, 9) *  var(--game-cell-size, 30px)) + calc(var(--game-cols, 9) * 1px));
-        box-sizing: border-box;
-      }
-    </style>
-    <game-header></game-header>
-    <game-grid></game-grid>
-  </template>
+    <template>
+        <style>
+             :host {
+                --game-rows: 9;
+                --game-cols: 9;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                box-sizing: border-box;
+                background: var(--grid-cell-background, hsl(0, 0%, 75%));
+                border: var(--game-inner-border-size, 4px) inset var(--grid-cell-border-color, hsl(0, 0%, 90%));
+                padding: calc(2 * var(--game-inner-border-size, 4px));
+                box-sizing: border-box;
+            }
 
-  <script>
-    /**
-     * @customElement
-     * @polymer
-     */
-    class MinesweepeerGame extends Polymer.Element {
-      static get is() { return 'minesweepeer-game'; }
-      static get properties() {
-        return {
-          rows: {
-            type: Number,
-            value: 0
-          },
-          cols: {
-            type: Number,
-            value: 0
-          }
-        };
-      }
-    }
+            game-header {
+                width: 100%;
+            }
 
-    window.customElements.define(MinesweepeerGame.is, MinesweepeerGame);
-  </script>
+            game-grid {
+                margin-top: calc(2 * var(--game-inner-border-size, 4px));
+                width: calc((var(--game-rows, 9) * var(--game-cell-size, 30px)) + calc(var(--game-rows, 9) * 1px));
+                height: calc((var(--game-cols, 9) * var(--game-cell-size, 30px)) + calc(var(--game-cols, 9) * 1px));
+                box-sizing: border-box;
+            }
+
+        </style>
+        <game-header></game-header>
+        <game-grid></game-grid>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class MinesweepeerGame extends Polymer.Element {
+            static get is() {
+                return 'minesweepeer-game';
+            }
+            static get properties() {
+                return {
+                    rows: {
+                        type: Number,
+                        value: 0
+                    },
+                    cols: {
+                        type: Number,
+                        value: 0
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(MinesweepeerGame.is, MinesweepeerGame);
+
+    </script>
 </dom-module>

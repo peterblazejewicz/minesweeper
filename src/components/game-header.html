@@ -12,10 +12,11 @@
                 align-items: center;
                 justify-content: space-between;
                 box-sizing: border-box;
-                background: var(--grid-cell-background, hsl(0,0%,75%));
-                border: var(--game-inner-border-size, 4px) outset var(--grid-cell-border-color, hsl(0,0%,90%));
                 padding: calc(var(--game-inner-border-size, 4px) * 2);
+                background: var(--grid-cell-background, hsl(0, 0%, 75%));
+                border: var(--game-inner-border-size, 4px) outset var(--grid-cell-border-color, hsl(0, 0%, 90%));
             }
+
         </style>
         <game-counter id="size" counter="9"></game-counter>
         <game-status id="status" status="ongoing" on-status-click="handleStatusClick"></game-status>
@@ -33,8 +34,8 @@
             }
 
             /**
-            * handle status click
-            */
+             * handle status click
+             */
             handleStatusClick(event) {
                 // console.log(event.type);
             }
