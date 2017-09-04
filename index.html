@@ -18,6 +18,7 @@
         --game-cell-border-size: 1px;
         --grid-cell-border-color: hsl(0,0%,90%);
         --grid-cell-background: hsl(0,0%,75%);
+        --grid-cell-background-active: hsl(0,0%,70%);
         --game-cell-size: 10vw;
         --game-inner-border-size: 4px;
         --digit-display-background: hsl(0,0%,0%);
@@ -27,7 +28,7 @@
         --digit-display-height: calc(2 * var(--digit-display-width));
         --digit-display-bar-cap-width: calc(var(--digit-display-bar-height) / 2);
         --digit-display-border-size: 1px;
-        --game-status-size: 100px;
+        --game-status-size: calc(2 * var(--digit-display-width, 10vw));
         /* state */
 
       }

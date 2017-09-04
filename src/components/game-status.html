@@ -6,9 +6,6 @@
         <style>
             :host {
                 background: transparent;
-                --grid-cell-background-active: hsl(0,0%,70%);
-                --grid-cell-background: hsl(0,0%,75%);
-                --grid-cell-border-color: hsl(0,0%,90%);
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
@@ -16,18 +13,18 @@
             }
             #status {
                 position: relative;
-                bottom: -8%;
                 width: var(--game-status-size, 100px);
                 height: var(--game-status-size, 100px);
-                background: var(--grid-cell-background);
-                border: 4px outset var(--grid-cell-border-color);
-                font-size: calc(var(--game-status-size, 100px) * .75);
+                background: var(--grid-cell-background, hsl(0,0%, 75%));
+                border: var(--game-inner-border-size, 4px) outset var(--grid-cell-border-color, hsl(0,0%,90%));
+                font-size: calc(.5 * var(--game-status-size, 100px));
+                line-height: 1;
                 user-select: none;
             }
             #status:active {
                 border-style: groove;
                 outline: none;
-                background: var(--grid-cell-background-active);
+                background: var(--grid-cell-background-active, hsl(0,0%,70));
             }
 
         </style>
