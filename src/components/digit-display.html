@@ -4,27 +4,24 @@
     <template>
         <style>
              :host {
-                --digit-display-background: hsl(0, 0%, 0%);
-                --digit-display-color: red;
-                --digit-display-color-rgba: rgba(0, 255, 0, .2);
                 --digit-display-height: calc(2 * var(--digit-display-width));
-                --digit-display-bar-height: 10px;
+                --digit-display-bar-height: calc(.2 * var(--digit-display-width));
                 --digit-display-bar-cap-width: calc(var(--digit-display-bar-height) / 2);
                 display: block;
                 position: relative;
                 overflow: hidden;
                 box-sizing: border-box;
                 flex: 0 0 var(--digit-display-width);
-                width: var(--digit-display-width, 100px);
-                height: calc(2 * var(--digit-display-width, 100px));
+                width: var(--digit-display-width, 9vw);
+                height: calc(2 * var(--digit-display-width, 9vw));
                 margin: var(--digit-display-margin, 0);
-                background: var(--digit-display-background);
-                border: 1px solid var(--digit-display-background);
+                background: var(--digit-display-background, hsl(0, 0%, 0%));
+                border: var(--digit-display-border-size, 1px) solid var(--digit-display-background, hsl(0, 0%, 0%));
             }
 
             .hbar,
             .vbar {
-                background: var(--digit-display-color);
+                background: var(--digit-display-color, red);
                 position: absolute;
                 box-sizing: border-box;
             }
